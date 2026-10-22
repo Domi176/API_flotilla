@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sistema de administración de alumnos">
+  <title>Sistema Escolar | Alumnos</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="encabezado">
+    <div class="contenedor encabezado-contenido">
+      <a class="marca" href="/">
+        <span class="marca-icono">E</span>
+        <span>Sistema Escolar</span>
+      </a>
+      <span class="subtitulo">Administración de alumnos</span>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    <section class="bienvenida">
+      <div>
+        <p class="etiqueta">CONTROL ESCOLAR</p>
+        <h1>Gestión de alumnos</h1>
+        <p class="descripcion">
+          Registra, consulta, actualiza y elimina alumnos.
+        </p>
+      </div>
+
+      <div class="resumen">
+        <span>Total de alumnos</span>
+        <strong id="total-alumnos">0</strong>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-titulo">
+        <div>
+          <p class="etiqueta">REGISTRO</p>
+          <h2 id="titulo-formulario">Registrar alumno</h2>
+        </div>
+      </div>
+
+      <form id="form-alumno">
+        <div class="formulario-grid">
+          <div class="campo">
+            <label for="matricula">Matrícula *</label>
+            <input
+              type="text"
+              id="matricula"
+              name="matricula"
+              placeholder="Ej. 220001"
+              maxlength="30"
+              required
+            >
+          </div>
+
+          <div class="campo">
+            <label for="nombre">Nombre completo *</label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              placeholder="Nombre del alumno"
+              maxlength="120"
+              required
+            >
+          </div>
+
+          <div class="campo">
+            <label for="carrera">Carrera *</label>
+            <input
+              type="text"
+              id="carrera"
+              name="carrera"
+              placeholder="Ej. Tecnologías de la Información"
+              maxlength="120"
+              required
+            >
+          </div>
+
+          <div class="campo">
+            <label for="cuatrimestre">Cuatrimestre *</label>
+            <input
+              type="number"
+              id="cuatrimestre"
+              name="cuatrimestre"
+              min="1"
+              step="1"
+              placeholder="Ej. 7"
+              required
+            >
+          </div>
+
+          <div class="campo">
+            <label for="grupo">Grupo *</label>
+            <input
+              type="text"
+              id="grupo"
+              name="grupo"
+              placeholder="Ej. A"
+              maxlength="20"
+              required
+            >
+          </div>
+
+          <div class="campo">
+            <label for="estado">Estado *</label>
+            <select id="estado" name="estado" required>
+              <option value="Activo">Activo</option>
+              <option value="Inactivo">Inactivo</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="acciones-formulario">
+          <button type="submit" id="btn-guardar" class="boton boton-principal">
+            Registrar alumno
+          </button>
+
+          <button
+            type="button"
+            id="btn-cancelar"
+            class="boton boton-secundario"
+            hidden
+          >
+            Cancelar edición
+          </button>
+        </div>
+
+        <p id="mensaje" class="mensaje" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="panel">
+      <div class="inventario-cabecera">
+        <div>
+          <p class="etiqueta">REGISTROS GUARDADOS</p>
+          <h2>Tabla de alumnos</h2>
+        </div>
+
+        <button type="button" id="btn-recargar" class="boton boton-secundario">
+          Actualizar lista
+        </button>
+      </div>
+
+      <div class="busqueda">
+        <label class="sr-only" for="buscar">Buscar alumno</label>
+        <input
+          type="search"
+          id="buscar"
+          placeholder="Buscar por matrícula, nombre, carrera o grupo..."
+        >
+      </div>
+
+      <div class="tabla-contenedor">
+        <table>
+          <thead>
+            <tr>
+              <th>Matrícula</th>
+              <th>Nombre</th>
+              <th>Carrera</th>
+              <th>Cuatrimestre</th>
+              <th>Grupo</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody id="tabla-alumnos">
+            <tr>
+              <td colspan="7" class="tabla-vacia">
+                Cargando alumnos...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="pie">
+      <p>Proyecto académico de control escolar</p>
+      <p>Node.js · Express · MongoDB</p>
+    </footer>
+  </main>
+</body>
+</html>
